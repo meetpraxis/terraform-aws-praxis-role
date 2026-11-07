@@ -11,8 +11,6 @@ module "praxis_role" {
   source      = "meetpraxis/praxis-role/aws"
   version     = "1.0.0"
   external_id = "<the external ID from your praxis connect page>"
-
-  praxis_account_id = "<praxis's account ID from your connect page>"
 }
 
 output "role_arn" {
@@ -26,8 +24,6 @@ From git:
 module "praxis_role" {
   source      = "git::https://github.com/meetpraxis/terraform-aws-praxis-role.git?ref=1.0.0"
   external_id = "<the external ID from your praxis connect page>"
-
-  praxis_account_id = "<praxis's account ID from your connect page>"
 }
 ```
 
@@ -38,7 +34,6 @@ Configure the `aws` provider for the account to be checked, with permission to c
 | Name | Type | Default | Description |
 |---|---|---|---|
 | `external_id` | string | none, required | The external ID from your connect page. 32 to 64 characters. |
-| `praxis_account_id` | string | none, required | praxis's account ID, prefilled on your connect page. |
 
 ## Outputs
 
