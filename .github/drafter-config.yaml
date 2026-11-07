@@ -1,0 +1,40 @@
+# Release Drafter v7. Same file in every meetpraxis repo; change all six together.
+# PR titles are Conventional Commits (feat:, fix:, chore(deps):, feat!: ...). They pick the
+# section and the version bump. Tags are plain semver (1.2.3, no v).
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+category-template: '### $TITLE'
+change-template: '- $TITLE (#$NUMBER) $AUTHORS'
+change-title-escapes: '\<*_&'
+categories:
+  - title: 'Breaking changes'
+    semver-increment: 'major'
+    exclusive: true
+    when:
+      - conventional:
+          breaking: true
+  - title: 'Features'
+    semver-increment: 'minor'
+    when:
+      - conventional:
+          type: 'feat'
+      - label: 'feature'
+  - title: 'Fixes'
+    when:
+      - conventional:
+          types: ['fix', 'perf']
+      - label: 'bug'
+  - title: 'Maintenance'
+    collapse-after: 5
+    when:
+      - conventional:
+          types: ['chore', 'ci', 'build', 'docs', 'refactor', 'test', 'style', 'revert']
+      - label: 'dependencies'
+  - title: 'Other'
+template: |
+  ## What changed
+
+  $CHANGES
+footer: |
+
+  **Full changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...$RESOLVED_TAG
