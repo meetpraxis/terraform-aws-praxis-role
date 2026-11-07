@@ -8,6 +8,10 @@ terraform {
   }
 }
 
+locals {
+  praxis_account_id = "293635497825" # praxis's AWS account, the principal the role trusts
+}
+
 data "aws_iam_policy_document" "trust" {
   statement {
     effect  = "Allow"
@@ -15,7 +19,7 @@ data "aws_iam_policy_document" "trust" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::${var.praxis_account_id}:root"]
+      identifiers = ["arn:aws:iam::${local.praxis_account_id}:root"]
     }
 
     condition {

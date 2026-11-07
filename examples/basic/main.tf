@@ -5,8 +5,6 @@ provider "aws" {
 module "praxis_role" {
   source      = "../.."
   external_id = "paste-the-external-id-from-your-praxis-connect-page"
-
-  praxis_account_id = "123456789012" # from your praxis connect page
 }
 
 output "role_arn" {

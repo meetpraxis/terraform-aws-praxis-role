@@ -8,13 +8,3 @@ variable "external_id" {
   }
 }
 
-variable "praxis_account_id" {
-  description = "praxis's AWS account ID, shown prefilled on the praxis connect page (public; it appears in every trust policy)."
-  type        = string
-  # TODO(founder, T049): set `default` to praxis's public AWS account ID before tagging 1.0.0 (contracts/onboarding.md).
-
-  validation {
-    condition     = can(regex("^[0-9]{12}$", var.praxis_account_id))
-    error_message = "praxis_account_id must be a 12-digit AWS account ID."
-  }
-}
